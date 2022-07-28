@@ -1,9 +1,9 @@
 year = int(input("Введіть рік: "))
 
 if 1900 < year < 1_000_000:
-    if(year % 400 == 0):
+    if year % 400 == 0:
         print(year, "рік є високосним")
-    elif (year % 100 == 0):
+    elif year % 100 == 0:
         print(year, "рік не є високосним")
     elif year % 4 == 0:
         print(year, "рік є високосним")
