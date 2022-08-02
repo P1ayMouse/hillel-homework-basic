@@ -1,7 +1,7 @@
 natural_number = 1000
 n = 0
 
-while n < 1000:
+while n < natural_number:
     n += 1
     result = n * n
 
