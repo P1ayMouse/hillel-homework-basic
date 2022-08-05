@@ -15,7 +15,7 @@ while i != len_input_string:
         char_number_check = find_input_char
         chars_number += 1
 
-if i == 0:
+if chars_number == 0:
     print("Char not found")
 else:
     print("Char count in string: ", chars_number)
