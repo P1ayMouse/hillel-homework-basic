@@ -1,6 +1,6 @@
 input_numbers = input("Write your numbers: ")
 input_index = int(input("Write index: "))
-i = 0
+i = 1
 
 numbers_list = input_numbers.split()
 
