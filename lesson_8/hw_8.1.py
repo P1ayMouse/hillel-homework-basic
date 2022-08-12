@@ -15,10 +15,10 @@ for i in range(N):
 diag_sum = arr[0][0]
 for a in range(N-1):
     diag_sum += arr[a + 1][a + 1]
-print("Сума останього стовпця:", diag_sum)
+print("Сума діагоналі:", diag_sum)
 print('')
 
 last_col = arr[0][-1]
 for a in range(N-1):
     last_col += arr[a + 1][-1]
-print("Сума діагоналі:", last_col)
+print("Сума останього стовпця:", last_col)
