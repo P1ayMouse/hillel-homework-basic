@@ -10,7 +10,7 @@ for i in range(N):
     for j in range(N):
         print(f'{arr[i][j]:>{len(str_N*2)}}', end="\t")
     print('\n')
-print('')
+
 
 diag_sum = arr[0][0]
 for a in range(N-1):
