@@ -23,7 +23,7 @@ for k in dictionary:
 
 print("\nМінімальна кількість повторень:")
 for key, value in dictionary.items():
-    if value == min:
+    if value == min and len(key) >= 2:
         print(key + ":", value)
 
 max = 0
