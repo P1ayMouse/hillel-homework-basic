@@ -3,10 +3,10 @@ def table(func):
         n = func(*args, **kwargs)
         n = list(n)
         n.sort()
-        print(" ̲" + "＿" * 3 + "＿" + "＿" * 8 + "＿" + "＿" * 5 + " ̲")
+        print("⎯" * 18)
         for i in n:
-            print("⎢" + str(i) + " " * (5 - len(str(i))) + "⎪" + f'{("Кратне 3" + " " * 5) if i % 3 == 0 else ("Не кратне 3" + " " * 2)}' + "⎪" + f'{"Парне     " if i % 2 == 0 else "Не парне  "}' + "⎥")
-        print("—" + "⎯" * 3 + "⎯" + "⎯" * 8 + "⎯" + "⎯" * 5 + "—")
+            print("⎢" + f'{str(i):>4}' + "⎪" + f'{"Кратне 3" if i % 3 == 0 else "Не кратне 3":>12}' + "⎪" + f'{"Парне" if i % 2 == 0 else "Не парне":>10}' + "⎥")
+        print("⎯" * 18)
         return n
     return wrapper
 
