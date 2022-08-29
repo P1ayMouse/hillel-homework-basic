@@ -1,7 +1,7 @@
 import random
 
 N = 0
-while N < 3:
+while N < 5:
     N = int(input("Введіть N: "))
 
 arr = [[random.randint(1, 50) for j in range(N)] for i in range(N)]
