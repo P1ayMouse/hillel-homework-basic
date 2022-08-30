@@ -37,10 +37,9 @@ print("\nПісля сортування:")
 
 for p in range(N):
     for i in range(len(arr) - 2):
-        for j in range(1, 2):
-            if arr[-j][i + 1] < arr[-j][i]:
-                for k in range(len(arr)):
-                    arr[k][i], arr[k][i + 1] = arr[k][i + 1], arr[k][i]
+        if arr[-1][i + 1] < arr[-1][i]:
+            for j in range(len(arr)):
+                arr[j][i], arr[j][i + 1] = arr[j][i + 1], arr[j][i]
 
 for i in range(N):
     bubble_sort(arr)
