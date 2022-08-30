@@ -19,9 +19,8 @@ def enter_matrix(matrix):
 print("\nДо сортування:")
 enter_matrix(arr)
 
-
 def bubble_sort(matrix):
-    for p in range(len(matrix) - 1):
+    for p in range(len(matrix)):
         for i in range(len(matrix) - 1):
             for j in range(len(matrix) - 2):
                 if i % 2 == 0:
@@ -32,15 +31,11 @@ def bubble_sort(matrix):
                     if matrix[j][i] > matrix[j + 1][i]:
                         matrix[j][i], matrix[j + 1][i] = \
                             matrix[j + 1][i], matrix[j][i]
-
+                if matrix[-1][j + 1] < matrix[-1][j]:
+                    for k in range(len(matrix)):
+                        matrix[k][j], matrix[k][j + 1] = matrix[k][j + 1], matrix[k][j]
 
 print("\nПісля сортування:")
-
-for p in range(N):
-    for i in range(len(arr) - 2):
-        if arr[-1][i + 1] < arr[-1][i]:
-            for j in range(len(arr)):
-                arr[j][i], arr[j][i + 1] = arr[j][i + 1], arr[j][i]
 
 bubble_sort(arr)
 enter_matrix(arr)
