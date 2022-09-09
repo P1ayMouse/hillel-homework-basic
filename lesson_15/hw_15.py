@@ -1,12 +1,10 @@
 def concatination(x, y):
     try:
-        xy = x + y
-        return xy
+        return x + y
     except TypeError:
         x = str(x)
         y = str(y)
-        xy = x + y
-        return xy
+        return x + y
 
 
 if __name__ == "__main__":
