@@ -51,6 +51,7 @@ class Board:
         print()
 
 
+# Автоматичне виставлення кораблів
 def auto_ship_locate(obj_name):
     locate.auto_locate(obj_name, 1)
     locate.auto_locate(obj_name, 1)
@@ -64,6 +65,7 @@ def auto_ship_locate(obj_name):
     locate.auto_locate(obj_name, 4)
 
 
+# Ввод гравця
 def player_enter():
     if_auto = input("\t1. Автоматично\n\t2. Самоввід\n\nВідповідь: ")
     locate.clear_screen()
@@ -95,6 +97,7 @@ def player_enter():
             locate.clear_screen()
 
 
+# Віднесення кожної палуби, до її корабля
 def dict_in_dict(board):
     duplicate_dict = board.dict_boats.copy()
     for i in range(1, len(duplicate_dict) + 1):
@@ -149,7 +152,7 @@ if __name__ == "__main__":
             bot_bool_shoot = shoot.shot(player_board, y, x,
                                         player_board.board_selections)
             player_bool_shoot = not bot_bool_shoot
-            #locate.clear_screen()
+            locate.clear_screen()
         # Перемога гравця
         if player_board.scores == 10:
             locate.clear_screen()
