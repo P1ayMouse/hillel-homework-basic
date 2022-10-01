@@ -122,7 +122,6 @@ if __name__ == "__main__":
     player_bool_shoot = True
     bot_bool_shoot = False
     while True:
-        bot_board.draw_board_selections()
         bot_board.draw_attack_board()
         player_board.draw_board_selections()
         print("\033[0;34m" f"\t\tРахунок" f"\n\tГравець: {player_board.scores}"
