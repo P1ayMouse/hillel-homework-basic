@@ -1,6 +1,7 @@
 import locate
-import colors
 import shoot
+import random
+import simple_colors as color
 
 
 class Board:
@@ -17,6 +18,7 @@ class Board:
         self.boats_location = []
         self.dict_boats = {}
 
+    # Дошка із кораблями
     def draw_board_selections(self):
         # Вивід чисел
         print(f"{' ':^3}", end="")
@@ -32,6 +34,7 @@ class Board:
             print()
         print()
 
+    # Дошка для демонстрації атак гравця
     def draw_attack_board(self):
         # Вивід чисел
         print(f"{' ':^3}", end="")
@@ -68,12 +71,10 @@ def player_enter():
     while True:
         if if_auto == "1":
             auto_ship_locate(player_board)
-            bot_board.draw_attack_board()
-            player_board.draw_board_selections()
             break
         elif if_auto == "2":
             if player_board.boards_number == 11:
-                player_board.draw_board_selections()
+                locate.clear_screen()
                 break
             player_board.draw_board_selections()
             print("\t1. Корабель праворуч\n\t2. Корабель вниз\n")
@@ -89,8 +90,7 @@ def player_enter():
             locate.coordinates_locate_check(board_type, rotation, player_board)
         else:
             locate.clear_screen()
-            print(colors.set_color("\nНе правильно введена відповідь\n",
-                                   colors.Color.red))
+            print(color.yellow("\nНе правильно введена відповідь\n"))
             if_auto = input("\t1. Автоматично\n\t2. Самоввід\n\nВідповідь: ")
             locate.clear_screen()
 
@@ -116,18 +116,51 @@ if __name__ == "__main__":
     bot_board.dict_boats = dict(zip([i for i in range(1, 11)],
                                     bot_board.boats_location))
     dict_in_dict(bot_board)
-    while player_board.scores != 20 or bot_board.scores != 20:
-        locate.clear_screen()
+    player_bool_shoot = True
+    bot_bool_shoot = False
+    while True:
         bot_board.draw_board_selections()
         bot_board.draw_attack_board()
         player_board.draw_board_selections()
         print("\033[0;34m" f"\t\tРахунок" f"\n\tГравець: {player_board.scores}"
               f"\tБот: {bot_board.scores}" "\033[0m")
-        coordinates = input("\nВведіть координати: ")
-        coordinates = coordinates.upper()
-        if 3 >= len(coordinates) >= 2 \
-                and coordinates[0] in player_board.letters_list \
-                and coordinates[1:] in player_board.numbers_list:
-            shoot.shot(player_board, bot_board, coordinates)
-        #shoot.shot(bot_board, player_board, coordinates)
-
+        # Стрільба гравця
+        if player_bool_shoot:
+            coordinates = input("\nВведіть координати: ")
+            coordinates = coordinates.upper()
+            if 3 >= len(coordinates) >= 2 \
+                    and coordinates[0] in player_board.letters_list \
+                    and coordinates[1:] in player_board.numbers_list:
+                y = player_board.letters_list.index(coordinates[0])
+                x = player_board.numbers_list.index(coordinates[1:])
+                locate.clear_screen()
+                player_bool_shoot = shoot.shot(bot_board, y, x,
+                                               bot_board.attack_board)
+                bot_bool_shoot = not player_bool_shoot
+            else:
+                locate.clear_screen()
+                player_bool_shoot = True
+                bot_bool_shoot = not player_bool_shoot
+                print(color.yellow("\nНе правильно введенні координати"))
+        # Стрільба бота
+        if bot_bool_shoot:
+            x = random.randint(0, 9)
+            y = random.randint(0, 9)
+            bot_bool_shoot = shoot.shot(player_board, y, x,
+                                        player_board.board_selections)
+            player_bool_shoot = not bot_bool_shoot
+            #locate.clear_screen()
+        # Перемога гравця
+        if player_board.scores == 10:
+            locate.clear_screen()
+            bot_board.draw_attack_board()
+            player_board.draw_board_selections()
+            print(color.green(f"\n{'Ви перемогли!':>30}"))
+            break
+        # Перемога бота
+        if bot_board.scores == 10:
+            locate.clear_screen()
+            bot_board.draw_attack_board()
+            player_board.draw_board_selections()
+            print(color.red(f"\n{'Переміг бот!':>30}"))
+            break
