@@ -24,13 +24,13 @@ def attack_boat_search(board, cords, attack_board):
                                      attack_board)
                 for c in range(len(cords_list)):
                     attack_board[cords_list[c][0]][cords_list[c][1]] = "✘"
-                board.scores += 1
 
 
 # Стрільба у певну координату
-def shot(board, y, x, attack_board):
+def shot(player_1, player_2, y, x, attack_board):
     """
-    :param board: Дошка
+    :param player_1: Той, у кого стіляють
+    :param player_2: Той, хто стріляє
     :param y: Буква
     :param x: Цифра
     :param attack_board: Дошка, де будуть відзначатися влучання
@@ -39,11 +39,12 @@ def shot(board, y, x, attack_board):
     """
     if attack_board[y][x] != "•" \
             and attack_board[y][x] != "✘":
-        if board.board_selections[y][x] == "⃞":
+        if player_1.board_selections[y][x] == "⃞":
             attack_board[y][x] = "✘"
-            attack_boat_search(board, (y, x), attack_board)
+            player_2.scores += 1
+            attack_boat_search(player_1, (y, x), attack_board)
             return True
-        if board.board_selections[y][x] == " ":
+        if player_1.board_selections[y][x] == " ":
             attack_board[y][x] = "•"
             return False
     else:

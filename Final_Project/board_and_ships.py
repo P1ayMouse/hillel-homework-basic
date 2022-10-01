@@ -137,7 +137,7 @@ if __name__ == "__main__":
                 y = player_board.letters_list.index(coordinates[0])
                 x = player_board.numbers_list.index(coordinates[1:])
                 locate.clear_screen()
-                player_bool_shoot = shoot.shot(bot_board, y, x,
+                player_bool_shoot = shoot.shot(bot_board, player_board, y, x,
                                                bot_board.attack_board)
                 bot_bool_shoot = not player_bool_shoot
             else:
@@ -149,19 +149,19 @@ if __name__ == "__main__":
         if bot_bool_shoot:
             x = random.randint(0, 9)
             y = random.randint(0, 9)
-            bot_bool_shoot = shoot.shot(player_board, y, x,
+            bot_bool_shoot = shoot.shot(player_board, bot_board, y, x,
                                         player_board.board_selections)
             player_bool_shoot = not bot_bool_shoot
             locate.clear_screen()
         # Перемога гравця
-        if player_board.scores == 10:
+        if player_board.scores == 20:
             locate.clear_screen()
             bot_board.draw_attack_board()
             player_board.draw_board_selections()
             print(color.green(f"\n{'Ви перемогли!':>30}"))
             break
         # Перемога бота
-        if bot_board.scores == 10:
+        if bot_board.scores == 20:
             locate.clear_screen()
             bot_board.draw_attack_board()
             player_board.draw_board_selections()
